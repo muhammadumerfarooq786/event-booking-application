@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Activity Search</title>
+    <link rel="stylesheet" href="/style/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet-src.js"></script>
+    <script src="/script/search.js" defer></script>
+  </head>
+  <body>
+    <nav class="top-menu">
+      <div class="menu-left">
+        <a href="/">Experiences</a>
+      </div>
+      <div class="menu-right">
+        <a href="/add-experience">Add Experience</a>
+        <% if (SessionDetails) {%>
+        <a href="/logout">Logout</a>
+        <% } else { %>
+        <a href="/login">Login</a>
+        <% } %>
+      </div>
+    </nav>
+
+    <% if (SessionDetails) {%>
+    <div class="login-user-info" style="text-align: center">
+      <h5 style="border: 2px solid #000; padding: 10px">
+        Logged in as <%= SessionDetails.username %>
+      </h5>
+    </div>
+    <% } %>
+
+    <div class="content">
+      <h3>Search Activities</h3>
+      <form id="searchForm">
+        <label for="region">Enter Region Name:</label>
+        <input type="text" id="region" name="region" />
+        <button type="submit">Search</button>
+      </form>
+      <div id="mapContainer" class="map-container">
+        <div id="map"></div>
+      </div>
+      <h2 id="activitiesHeading">Activities in the Region:</h2>
+      <table id="activitiesTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Country</th>
+            <th>Region</th>
+            <th>Description</th>
+            <th>Bookings</th>
+            <th>Operation</th>
+          </tr>
+        </thead>
+        <tbody id="activitiesBody"></tbody>
+      </table>
+      <div id="error"></div>
+    </div>
+  </body>
+</html>
